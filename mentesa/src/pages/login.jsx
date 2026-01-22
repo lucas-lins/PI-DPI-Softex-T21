@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/login.css";
 import { authService } from "../utils/auth";
+import nameImage from "../assets/name2.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function Login() {
 
     if (result.success) {
         alert("Login realizado com sucesso! Bem-vindo(a) " + result.user.nome);
-        navigate("/"); // Redirect to landing page (or dashboard in future)
+        navigate("/dashboard"); // Se logar manda pro dashboard
     } else {
         alert(result.message);
     }
@@ -30,6 +31,9 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="login-card">
+        <div className="logo-container">
+            <img src={nameImage} alt="MenteSã" className="login-logo-img" />
+        </div>
         <h1>Entrar</h1>
         <p>Acesse a plataforma para acompanhar os registros.</p>
 

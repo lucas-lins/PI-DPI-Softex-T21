@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import '../styles/landing.css'; 
+import nameImage from '../assets/name2.png';
 
 export default function LandingPage() {
   return (
     <div className="landing-container">
       <header className="landing-header">
-        <h1>MenteSã</h1>
-        <p>Sistema de Apoio ao Diagnóstico de Demência</p>
+        <img src={nameImage} alt="MenteSã - Sistema de Apoio ao Diagnóstico de Demência" className="landing-logo-img" />
+        <p className="landing-description">
+          O MenteSã é um sistema inteligente de apoio ao diagnóstico e acompanhamento de demências. 
+          Conectamos cuidadores e profissionais de saúde para oferecer um registro clínico detalhado, 
+          histórico de evolução e materiais de capacitação, promovendo um cuidado mais humanizado e eficiente.
+        </p>
       </header>
       
       <main className="landing-main">
@@ -21,7 +26,7 @@ export default function LandingPage() {
       </main>
 
       <footer className="landing-footer">
-        <p>&copy; 2026 PI-DPI-Softex-T21. Acessibilidade e Cuidado.</p>
+        <p>&copy; 2026 MenteSã - Softex T21 Mardonio - Acessibilidade e Cuidado.</p>
       </footer>
     </div>
   );

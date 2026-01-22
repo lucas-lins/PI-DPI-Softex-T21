@@ -22,8 +22,21 @@
   box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Slight shadow for lift */
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-logo-img {
+  max-width: 240px;
+  height: auto;
+}
+
 .login-card h1 {
   margin: 0 0 8px;
+  font-size: 2rem; 
+  color: #555;
 }
 
 .login-card p {
@@ -71,7 +84,10 @@
 /* Validation Styles */
 .input-error {
   border-color: #dc3545 !important;
-  background-color: #fff8f8;
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
 }
 
 .error-message {

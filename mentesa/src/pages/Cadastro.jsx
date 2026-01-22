@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/login.css"; // Reuse login styles for consistency
+import "../styles/login.css";
 import { validators } from "../utils/validators";
 import { authService } from "../utils/auth";
+import nameImage from "../assets/name2.png";
 
 export default function Cadastro() {
   const navigate = useNavigate();
@@ -18,16 +19,18 @@ export default function Cadastro() {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
+  //Essa função pega o valor digitado pelo usuario e salva no estado
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // Optional: Clear error immediately when user starts fixing it
+    //Limpa o alerta de erro quando o usuario corrige
     if (errors[name]) {
         setErrors(prev => ({ ...prev, [name]: null }));
     }
   }
 
+  //Essa função valida o campo
   function validateField(name, value) {
     let error = null;
 
@@ -69,11 +72,12 @@ export default function Cadastro() {
     return error;
   }
 
+  //Essa função valida o campo quando o usuario sai dele
   function handleBlur(e) {
     const { name, value } = e.target;
     const error = validateField(name, value);
     
-    // Only set error if there is one, or clear it if it's now valid
+    // Se tiver erro, mostra o alerta, se não, limpa
     setErrors(prev => ({
       ...prev,
       [name]: error
@@ -83,7 +87,7 @@ export default function Cadastro() {
   function handleSubmit(e) {
     e.preventDefault();
     
-    // Validate all fields on submit
+    // Valida todos os campos
     const newErrors = {};
     Object.keys(formData).forEach(key => {
       const error = validateField(key, formData[key]);
@@ -97,14 +101,14 @@ export default function Cadastro() {
       return;
     }
 
-    // Attempt to save user
+    // Tenta salvar o usuario
     const result = authService.saveUser(formData);
     
     if (result.success) {
         alert(result.message);
-        navigate("/login"); // Redirect to login page
+        navigate("/login"); // Se salvou, redireciona para a pagina de login
     } else {
-        alert(result.message); // Show error (e.g. duplicate email)
+        alert(result.message); // Se não salvou, mostra o erro
         if (result.message.includes("e-mail")) {
             setErrors(prev => ({ ...prev, email: result.message }));
         }
@@ -114,6 +118,9 @@ export default function Cadastro() {
   return (
     <div className="login-page">
       <div className="login-card">
+        <div className="logo-container">
+            <img src={nameImage} alt="MenteSã" className="login-logo-img" />
+        </div>
         <h1>Criar Conta</h1>
         <p>Cadastre-se para acessar o sistema.</p>
 
