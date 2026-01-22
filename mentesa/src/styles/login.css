@@ -1,0 +1,69 @@
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  
+  /* Shared Background Config */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background-color: white; /* Ensure readability over background */
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* Slight shadow for lift */
+}
+
+.login-card h1 {
+  margin: 0 0 8px;
+}
+
+.login-card p {
+  margin: 0 0 20px;
+  opacity: 0.8;
+}
+
+.login-form {
+  display: grid;
+  gap: 12px;
+}
+
+.login-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.login-form input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d8d8d8;
+  outline: none;
+}
+
+.login-form input:focus {
+  border-color: #999;
+}
+
+.login-form button {
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.login-footer {
+  display: block;
+  margin-top: 14px;
+  opacity: 0.7;
+}

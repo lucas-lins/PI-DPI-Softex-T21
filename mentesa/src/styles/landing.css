@@ -1,0 +1,88 @@
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* Background Image Config */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Ensures background stays fixed during scroll */
+  
+  background-color: #f5f7fa; /* Fallback */
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  padding: 2rem;
+}
+
+.landing-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.landing-header p {
+  font-size: 1.25rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.landing-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.landing-actions {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-large {
+  display: inline-block;
+  padding: 1.5rem 3rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  min-width: 200px;
+}
+
+.btn-large:hover, .btn-large:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  outline: 3px solid #ffcc00; /* High contrast focus */
+}
+
+.btn-primary {
+  background-color: #0056b3;
+  color: white;
+  border: 2px solid #0056b3;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #0056b3;
+  border: 2px solid #0056b3;
+}
+
+.landing-footer {
+  margin-top: 2rem;
+  color: #777;
+}
+
+@media (max-width: 600px) {
+  .landing-actions {
+    flex-direction: column;
+  }
+}

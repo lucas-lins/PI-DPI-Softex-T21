@@ -1,0 +1,47 @@
+/* Global Styles & Accessibility */
+:root {
+  --primary-color: #0056b3;
+  --text-color: #212529;
+  --bg-color: #f8f9fa;
+  --font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Ensure focus visibility for accessibility */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: 3px solid #ffcc00;
+  outline-offset: 2px;
+}
+
+/* Typography for accessibility */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+p {
+  font-size: 1.125rem; /* ~18px for better readability */
+  margin-bottom: 1rem;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+/* Remove default #root constraints from Vite template to allow full-width pages */
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
