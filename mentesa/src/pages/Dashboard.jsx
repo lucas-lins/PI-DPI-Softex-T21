@@ -38,9 +38,9 @@ export default function Dashboard() {
         <h2>O que você deseja fazer hoje?</h2>
         
         <div className="menu-grid">
-          <Link to="/idosos" className="menu-card">
+          <Link to="/pacientes" className="menu-card">
             <span className="card-icon">👴</span>
-            <h3>Cadastro de Idosos</h3>
+            <h3>Cadastro de Pacientes</h3>
             <p>Registre pacientes e seus históricos clínicos.</p>
           </Link>
 

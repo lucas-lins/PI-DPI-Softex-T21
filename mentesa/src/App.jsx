@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage';
 import Login from './pages/login';
 import Cadastro from './pages/Cadastro';
 import Dashboard from './pages/Dashboard';
+import CadastroPacientes from './pages/CadastroPacientes';
 import './App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/pacientes" element={<CadastroPacientes />} />
       </Routes>
     </Router>
   );
