@@ -39,9 +39,21 @@ export default function Dashboard() {
         
         <div className="menu-grid">
           <Link to="/pacientes" className="menu-card">
-            <span className="card-icon">👴</span>
-            <h3>Cadastro de Pacientes</h3>
-            <p>Registre pacientes e seus históricos clínicos.</p>
+            <span className="card-icon">➕</span>
+            <h3>Cadastrar Novo</h3>
+            <p>Registre um novo paciente.</p>
+          </Link>
+
+          <Link to="/pacientes/lista" className="menu-card">
+            <span className="card-icon">📋</span>
+            <h3>Consultar Pacientes</h3>
+            <p>Veja e edite seus pacientes cadastrados.</p>
+          </Link>
+
+          <Link to="/relatorios" className="menu-card">
+            <span className="card-icon">📊</span>
+            <h3>Relatórios</h3>
+            <p>Estatísticas de idade e demência.</p>
           </Link>
 
           <Link to="/diario" className="menu-card">
@@ -50,16 +62,10 @@ export default function Dashboard() {
             <p>Registre sinais, sintomas e observações diárias.</p>
           </Link>
 
-          <Link to="/relatorios" className="menu-card">
-            <span className="card-icon">📊</span>
-            <h3>Relatórios</h3>
-            <p>Acompanhe a evolução e gere relatórios.</p>
-          </Link>
-
-          <Link to="/capacitacao" className="menu-card">
-            <span className="card-icon">🎓</span>
-            <h3>Capacitação</h3>
-            <p>Materiais educativos e guias para cuidadores.</p>
+          <Link to="/diagnostico" className="menu-card">
+            <span className="card-icon">🩺</span>
+            <h3>Diagnóstico</h3>
+            <p>Registre e consulte diagnósticos médicos.</p>
           </Link>
         </div>
       </main>

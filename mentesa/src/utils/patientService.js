@@ -29,6 +29,20 @@ export const patientService = {
     patients.push(newPatient);
     localStorage.setItem(DB_KEY_PATIENTS, JSON.stringify(patients));
     
-    return { success: true, message: "Paciente cadastrado com sucesso!" };
+  },
+
+  // Update an existing patient
+  updatePatient: (updatedPatient) => {
+    const patients = patientService.getPatients();
+    const index = patients.findIndex(p => p.id === updatedPatient.id);
+    
+    if (index === -1) {
+      return { success: false, message: "Paciente não encontrado." };
+    }
+
+    patients[index] = updatedPatient;
+    localStorage.setItem(DB_KEY_PATIENTS, JSON.stringify(patients));
+    
+    return { success: true, message: "Dados atualizados com sucesso!" };
   }
 };
