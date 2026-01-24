@@ -123,43 +123,137 @@ export default function Diagnostico() {
   function generatePDFReport() {
     if (!diagnosisResult || !selectedPatient) return;
 
-    // Generate a simple text-based PDF content
-    const reportContent = `
-LAUDO DE ANÁLISE DE ELETROENCEFALOGRAMA
-========================================
+    import('jspdf').then(({ jsPDF }) => {
+      const doc = new jsPDF();
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
+      const margin = 20;
+      let yPos = 20;
 
-Paciente: ${selectedPatient.nome}
-Idade: ${selectedPatient.idade} anos
-Data do Laudo: ${new Date().toLocaleDateString('pt-BR')}
+      // Header
+      doc.setFillColor(0, 86, 179);
+      doc.rect(0, 0, pageWidth, 35, 'F');
+      
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(18);
+      doc.setFont('helvetica', 'bold');
+      doc.text('LAUDO DE ANÁLISE DE ELETROENCEFALOGRAMA', pageWidth / 2, 15, { align: 'center' });
+      
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Sistema MenteSã - Diagnóstico por IA', pageWidth / 2, 25, { align: 'center' });
 
-DIAGNÓSTICO SUGERIDO (IA):
-${diagnosisResult.suggestion}
+      yPos = 50;
 
-Nível de Confiança: ${diagnosisResult.confidence}
+      // Patient Info Box
+      doc.setFillColor(240, 240, 240);
+      doc.rect(margin, yPos - 5, pageWidth - (margin * 2), 30, 'F');
+      
+      doc.setTextColor(51, 51, 51);
+      doc.setFontSize(11);
+      doc.setFont('helvetica', 'bold');
+      doc.text('DADOS DO PACIENTE', margin + 5, yPos + 3);
+      
+      doc.setFont('helvetica', 'normal');
+      doc.text(`Nome: ${selectedPatient.nome}`, margin + 5, yPos + 12);
+      doc.text(`Idade: ${selectedPatient.idade} anos`, margin + 100, yPos + 12);
+      doc.text(`Data do Laudo: ${new Date().toLocaleDateString('pt-BR')}`, margin + 5, yPos + 20);
+      
+      yPos += 40;
 
-DETALHES DA ANÁLISE:
-${diagnosisResult.details}
+      // Diagnosis Section
+      doc.setFillColor(0, 86, 179);
+      doc.rect(margin, yPos - 5, pageWidth - (margin * 2), 10, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text('DIAGNÓSTICO SUGERIDO (IA)', margin + 5, yPos + 2);
+      
+      yPos += 15;
+      doc.setTextColor(0, 86, 179);
+      doc.setFontSize(14);
+      doc.text(diagnosisResult.suggestion, margin, yPos);
+      
+      yPos += 10;
+      doc.setTextColor(100, 100, 100);
+      doc.setFontSize(11);
+      doc.text(`Nível de Confiança: ${diagnosisResult.confidence}`, margin, yPos);
 
-RECOMENDAÇÕES:
-${diagnosisResult.recommendations.map((rec, idx) => `${idx + 1}. ${rec}`).join('\n')}
+      yPos += 15;
 
----
-Este laudo foi gerado automaticamente por sistema de Inteligência Artificial
-e deve ser validado por profissional médico qualificado.
+      // Details Section
+      doc.setFillColor(0, 86, 179);
+      doc.rect(margin, yPos - 5, pageWidth - (margin * 2), 10, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text('DETALHES DA ANÁLISE', margin + 5, yPos + 2);
+      
+      yPos += 15;
+      doc.setTextColor(51, 51, 51);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      
+      const splitDetails = doc.splitTextToSize(diagnosisResult.details, pageWidth - (margin * 2));
+      doc.text(splitDetails, margin, yPos);
+      yPos += splitDetails.length * 5 + 10;
 
-Sistema MenteSã - ${new Date().toLocaleString('pt-BR')}
-    `.trim();
+      // Recommendations Section
+      doc.setFillColor(0, 86, 179);
+      doc.rect(margin, yPos - 5, pageWidth - (margin * 2), 10, 'F');
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(12);
+      doc.setFont('helvetica', 'bold');
+      doc.text('RECOMENDAÇÕES', margin + 5, yPos + 2);
+      
+      yPos += 15;
+      doc.setTextColor(51, 51, 51);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      
+      diagnosisResult.recommendations.forEach((rec, idx) => {
+        doc.text(`${idx + 1}. ${rec}`, margin + 5, yPos);
+        yPos += 7;
+      });
 
-    // Create a blob and download
-    const blob = new Blob([reportContent], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `laudo_${selectedPatient.nome.replace(/\s+/g, '_')}_${Date.now()}.txt`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+      yPos += 10;
+
+      // Warning Box
+      doc.setFillColor(255, 243, 205);
+      doc.rect(margin, yPos - 3, pageWidth - (margin * 2), 20, 'F');
+      doc.setDrawColor(255, 193, 7);
+      doc.rect(margin, yPos - 3, pageWidth - (margin * 2), 20, 'S');
+      
+      doc.setTextColor(133, 100, 4);
+      doc.setFontSize(9);
+      doc.setFont('helvetica', 'bold');
+      doc.text('IMPORTANTE:', margin + 5, yPos + 5);
+      doc.setFont('helvetica', 'normal');
+      const warningText = 'Este diagnóstico foi gerado por Inteligência Artificial e deve ser validado por um profissional médico qualificado.';
+      const splitWarning = doc.splitTextToSize(warningText, pageWidth - (margin * 2) - 10);
+      doc.text(splitWarning, margin + 5, yPos + 11);
+
+      // Signature Section - with more space above
+      const signatureY = pageHeight - 35
+      doc.setDrawColor(51, 51, 51);
+      doc.setLineWidth(0.5);
+      doc.line(pageWidth / 2 - 40, signatureY, pageWidth / 2 + 40, signatureY);
+      
+      doc.setTextColor(51, 51, 51);
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
+      doc.text('Assinatura do médico', pageWidth / 2, signatureY + 6, { align: 'center' });
+
+      // Footer
+      const footerY = pageHeight - 15;
+      doc.setTextColor(150, 150, 150);
+      doc.setFontSize(8);
+      doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, margin, footerY);
+      doc.text('Sistema MenteSã © 2026', pageWidth - margin, footerY, { align: 'right' });
+
+      // Save PDF
+      doc.save(`laudo_${selectedPatient.nome.replace(/\s+/g, '_')}_${Date.now()}.pdf`);
+    });
   }
 
   function handleLogout() {
@@ -274,11 +368,17 @@ Sistema MenteSã - ${new Date().toLocaleString('pt-BR')}
                                         value={selectedExistingFile}
                                         onChange={(e) => setSelectedExistingFile(e.target.value)}
                                         style={{ 
-                                            width: "100%", 
-                                            padding: "12px", 
-                                            borderRadius: "8px", 
-                                            border: "1px solid #ddd",
-                                            backgroundColor: "white"
+                                          width: "100%", 
+                                          padding: "12px", 
+                                          borderRadius: "8px", 
+                                          border: "1px solid #ddd",
+                                          backgroundColor: "#333",
+                                          color: "white", 
+                                          appearance: "none", 
+                                          backgroundImage: `url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E")`,
+                                          backgroundRepeat: "no-repeat",
+                                          backgroundPosition: "right .7em top 50%",
+                                          backgroundSize: ".65em auto"
                                         }}
                                     >
                                         <option value="">-- Selecione um arquivo --</option>
