@@ -136,3 +136,70 @@ input[type=number] {
 .toggle-password:hover {
   color: #333;
 }
+
+/* ============================================
+   DARK THEME STYLES
+   ============================================ */
+
+body.dark-theme .login-page {
+  background-image: none;
+  background-color: #1a1a2e;
+}
+
+body.dark-theme .login-card {
+  background-color: #16213e;
+  border-color: #2a3f5f;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+body.dark-theme .login-card h1 {
+  color: #f0f0f0;
+}
+
+body.dark-theme .login-card p {
+  color: #b0b0b0;
+}
+
+body.dark-theme .login-form label {
+  color: #e0e0e0;
+}
+
+body.dark-theme .login-form input {
+  background-color: #0f3460;
+  border-color: #2a3f5f;
+  color: #f0f0f0;
+}
+
+body.dark-theme .login-form input::placeholder {
+  color: #888;
+}
+
+body.dark-theme .login-form input:focus {
+  border-color: #4a9eff;
+}
+
+body.dark-theme .login-form button {
+  background-color: #0056b3;
+  color: white;
+}
+
+body.dark-theme .login-form button:hover {
+  background-color: #4a9eff;
+}
+
+body.dark-theme .login-footer {
+  color: #aaa;
+}
+
+body.dark-theme .login-footer a {
+  color: #4a9eff;
+}
+
+body.dark-theme .toggle-password {
+  color: #aaa;
+}
+
+body.dark-theme .toggle-password:hover {
+  color: #fff;
+}
+

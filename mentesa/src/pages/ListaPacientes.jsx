@@ -33,6 +33,9 @@ export default function ListaPacientes() {
         <img src={logoImage} alt="MenteSã" className="dashboard-logo-img" />
         <div className="user-info">
           <span>{user.nome}</span>
+          <Link to="/perfil" style={{ textDecoration: 'none', color: '#0056b3', fontSize: '1.2rem', marginLeft: '0.5rem', marginRight: '0.5rem' }} title="Editar Perfil">
+            ⚙️
+          </Link>
           <button onClick={handleLogout} className="btn-logout">Sair</button>
         </div>
       </header>

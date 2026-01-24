@@ -122,3 +122,144 @@ input[type="file"]::file-selector-button {
 input[type="file"]::file-selector-button:hover {
   background-color: #e0e0e0;
 }
+
+/* ============================================
+   DARK THEME STYLES
+   ============================================ */
+
+body.dark-theme {
+  background-color: #1a1a2e;
+}
+
+body.dark-theme .dashboard-container {
+  background-color: #1a1a2e;
+}
+
+body.dark-theme .dashboard-header {
+  background-color: #16213e;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+body.dark-theme .user-info span {
+  color: #e0e0e0;
+}
+
+body.dark-theme .btn-logout {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+body.dark-theme .btn-logout:hover {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+body.dark-theme .dashboard-main h2 {
+  color: #f0f0f0;
+}
+
+body.dark-theme .menu-card {
+  background: #16213e;
+  border-color: #2a3f5f;
+  color: #f0f0f0;
+}
+
+body.dark-theme .menu-card:hover {
+  border-color: #4a9eff;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+}
+
+body.dark-theme .menu-card h3 {
+  color: #4a9eff;
+}
+
+body.dark-theme .menu-card p {
+  color: #aaa;
+}
+
+/* Forms in dark theme */
+body.dark-theme form {
+  background: #16213e !important;
+}
+
+body.dark-theme label {
+  color: #e0e0e0 !important;
+}
+
+body.dark-theme input[type="text"],
+body.dark-theme input[type="email"],
+body.dark-theme input[type="password"],
+body.dark-theme input[type="number"],
+body.dark-theme input[type="tel"],
+body.dark-theme textarea,
+body.dark-theme select {
+  background-color: #0f3460 !important;
+  border-color: #2a3f5f !important;
+  color: #f0f0f0 !important;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+  color: #888 !important;
+}
+
+body.dark-theme input[type="file"] {
+  background-color: #0f3460 !important;
+  border-color: #2a3f5f !important;
+  color: #f0f0f0 !important;
+}
+
+body.dark-theme input[type="file"]::file-selector-button {
+  background-color: #2a3f5f;
+  border-color: #4a9eff;
+  color: #fff;
+}
+
+body.dark-theme input[type="file"]::file-selector-button:hover {
+  background-color: #4a9eff;
+}
+
+/* Cards and containers in dark theme */
+body.dark-theme div[style*="background: white"],
+body.dark-theme div[style*="background:white"],
+body.dark-theme div[style*="background-color: white"] {
+  background-color: #16213e !important;
+}
+
+/* Text colors in dark theme */
+body.dark-theme p,
+body.dark-theme span {
+  color: #d0d0d0;
+}
+
+body.dark-theme h3,
+body.dark-theme h4 {
+  color: #f0f0f0;
+}
+
+/* Alerts and messages */
+body.dark-theme div[style*="backgroundColor: \"#d4edda\""] {
+  background-color: #1e4d2b !important;
+  border-color: #2e7d42 !important;
+  color: #a5d6a7 !important;
+}
+
+body.dark-theme div[style*="backgroundColor: \"#f8d7da\""] {
+  background-color: #4d1e24 !important;
+  border-color: #7d2e35 !important;
+  color: #f8bbd0 !important;
+}
+
+/* Charts background */
+body.dark-theme .recharts-wrapper {
+  background-color: transparent;
+}
+
+body.dark-theme .recharts-cartesian-grid line {
+  stroke: #2a3f5f;
+}
+
+body.dark-theme .recharts-text {
+  fill: #aaa;
+}
+

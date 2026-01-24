@@ -101,3 +101,49 @@
     flex-direction: column;
   }
 }
+
+/* ============================================
+   DARK THEME STYLES
+   ============================================ */
+
+body.dark-theme .landing-container {
+  background-image: none;
+  background-color: #1a1a2e;
+}
+
+body.dark-theme .landing-header h1 {
+  color: #f0f0f0;
+}
+
+body.dark-theme .landing-header p {
+  color: #b0b0b0;
+}
+
+body.dark-theme .landing-description {
+  color: #b0b0b0;
+}
+
+body.dark-theme .btn-primary {
+  background-color: #0056b3;
+  border-color: #4a9eff;
+}
+
+body.dark-theme .btn-primary:hover {
+  background-color: #4a9eff;
+}
+
+body.dark-theme .btn-secondary {
+  background-color: #16213e;
+  color: #4a9eff;
+  border-color: #4a9eff;
+}
+
+body.dark-theme .btn-secondary:hover {
+  background-color: #4a9eff;
+  color: white;
+}
+
+body.dark-theme .landing-footer {
+  color: #888;
+}
+
