@@ -101,7 +101,6 @@ export default function CadastroPacientes() {
     const newErrors = {};
     if (!formData.nome.trim()) newErrors.nome = "Nome é obrigatório.";
     if (!formData.idade || formData.idade <= 0) newErrors.idade = "Idade inválida.";
-    if (!formData.rotina.trim()) newErrors.rotina = "Rotina de cuidados é obrigatória.";
     
     return newErrors;
   }
@@ -184,7 +183,7 @@ export default function CadastroPacientes() {
             </div>
 
             <div>
-                <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Estágio da Demência</label>
+                <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Suspeita Inicial</label>
                 <select 
                     name="estagio" 
                     value={formData.estagio} 
@@ -273,7 +272,7 @@ export default function CadastroPacientes() {
           </div>
 
           <div style={{ marginBottom: "2rem" }}>
-            <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Rotina de Cuidados (Obrigatório)</label>
+            <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: "500" }}>Rotina de Cuidados</label>
             <textarea
               name="rotina"
               value={formData.rotina}

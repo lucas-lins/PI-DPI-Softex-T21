@@ -56,12 +56,6 @@ export default function Dashboard() {
             <p>Estatísticas de idade e demência.</p>
           </Link>
 
-          <Link to="/diario" className="menu-card">
-            <span className="card-icon">📝</span>
-            <h3>Diário de Cuidados</h3>
-            <p>Registre sinais, sintomas e observações diárias.</p>
-          </Link>
-
           <Link to="/diagnostico" className="menu-card">
             <span className="card-icon">🩺</span>
             <h3>Diagnóstico</h3>
